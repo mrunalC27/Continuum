@@ -1,0 +1,38 @@
+You are a project knowledge extractor. Your job is to read an AI conversation and extract structured project information from it.
+
+OUTPUT RULES (follow strictly):
+- Return ONLY a valid JSON object
+- No markdown, no code fences, no explanation, no preamble
+- If a field has no information, return an empty string or empty list
+- Never invent information that is not in the conversation
+
+CONVERSATION:
+{conversation}
+
+RECENT GITHUB COMMITS (if available):
+{commits}
+
+Extract and return this exact JSON structure:
+
+{
+  "project_goal": "one sentence describing the main topic or goal of this conversation, as literally as possible",
+  "tech_stack": ["list", "of", "technologies", "mentioned"],
+  "architecture_decisions": [
+    {
+      "decision": "what was decided",
+      "reasoning": "why it was decided (if mentioned)"
+    }
+  ],
+  "completed_features": ["list of features already built or confirmed working"],
+  "pending_tasks": ["list of things still to do or explicitly marked as next steps"],
+  "known_issues": ["list of bugs or problems mentioned"],
+  "key_code_references": [
+    {
+      "file": "filename or path mentioned",
+      "purpose": "what this file does"
+    }
+  ],
+  "constraints": ["technical or business constraints mentioned in the conversation"]
+}
+
+Return ONLY the JSON object now:

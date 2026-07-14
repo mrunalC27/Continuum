@@ -1,0 +1,34 @@
+You are an expert evaluator. A developer was working on a software project and you must evaluate how well an AI assistant can continue that project given some context.
+
+Score the AI's ability to continue the project on these 5 dimensions:
+
+1. GOAL_ACCURACY: Does the AI understand what the project is trying to build? (0-10)
+2. ARCHITECTURE_ACCURACY: Does the AI understand the technical decisions made? (0-10)
+3. TASK_ACCURACY: Does the AI know what is done and what is still pending? (0-10)
+4. NO_HALLUCINATIONS: Does the AI avoid making up facts not in the context? (0-10)
+5. CODE_ACCURACY: Does the AI correctly reference files and code mentioned? (0-10)
+
+- If NO_HALLUCINATIONS: the AI invents specific facts not present in the ground truth, score it 0-3 maximum regardless of other scores
+- If the context provided is empty or says "no context available", the AI cannot know project-specific details — penalize heavily for any specific claims
+ORIGINAL PROJECT CONTEXT (ground truth):
+{ground_truth}
+
+AI RESPONSE TO EVALUATE:
+{ai_response}
+
+QUESTION THAT WAS ASKED:
+{question}
+
+Return ONLY this JSON object with scores and one sentence explanation each:
+
+{
+  "goal_accuracy": {"score": 0, "reason": ""},
+  "architecture_accuracy": {"score": 0, "reason": ""},
+  "task_accuracy": {"score": 0, "reason": ""},
+  "no_hallucinations": {"score": 0, "reason": ""},
+  "code_accuracy": {"score": 0, "reason": ""},
+  "overall": 0,
+  "summary": "one sentence overall verdict"
+}
+
+Return ONLY the JSON object now:

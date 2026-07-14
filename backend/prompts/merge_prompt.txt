@@ -1,0 +1,52 @@
+You are a project knowledge reconciler. You will be given two snapshots of the same project extracted from two different AI conversations by two different team members.
+
+Your job is to:
+1. Merge non-conflicting information from both snapshots
+2. Detect conflicts where the two snapshots disagree
+3. Return a merged result and a list of conflicts
+
+OUTPUT RULES:
+- Return ONLY a valid JSON object
+- No markdown, no code fences, no explanation, no preamble
+- Never invent information not present in either snapshot
+
+SNAPSHOT A (from team member 1):
+{snapshot_a}
+
+SNAPSHOT B (from team member 2):
+{snapshot_b}
+
+Return this exact JSON structure:
+
+{
+  "merged": {
+    "project_goal": "best combined goal from both",
+    "tech_stack": ["combined unique list from both"],
+    "architecture_decisions": [
+      {
+        "decision": "decision text",
+        "reasoning": "reasoning if available"
+      }
+    ],
+    "completed_features": ["combined unique list from both"],
+    "pending_tasks": ["combined unique list from both"],
+    "known_issues": ["combined unique list from both"],
+    "key_code_references": [
+      {
+        "file": "filename",
+        "purpose": "purpose"
+      }
+    ],
+    "constraints": ["combined unique list from both"]
+  },
+  "conflicts": [
+    {
+      "field": "name of the field that conflicts",
+      "snapshot_a_value": "what snapshot A says",
+      "snapshot_b_value": "what snapshot B says",
+      "description": "one sentence explaining the conflict"
+    }
+  ]
+}
+
+Return ONLY the JSON object now:

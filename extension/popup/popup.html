@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ContextBridge</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <div class="header">
+    <h1>Continuum</h1>
+    <p class="tagline">AI Project Memory</p>
+  </div>
+
+  <!-- Project selector -->
+  <div class="section">
+    <label for="projectSelect">Project</label>
+    <div class="row">
+      <select id="projectSelect">
+        <option value="">-- select a project --</option>
+      </select>
+      <button id="newProjectBtn" class="btn-secondary">+ New</button>
+    </div>
+  </div>
+
+  <!-- New project form (hidden by default) -->
+  <div class="section hidden" id="newProjectForm">
+    <input type="text" id="projectName" placeholder="Project name" />
+    <input type="text" id="githubRepo" placeholder="GitHub repo (owner/repo) — optional" />
+    <button id="createProjectBtn" class="btn-primary">Create Project</button>
+  </div>
+
+  <!-- Compression level -->
+  <div class="section">
+    <label for="compressionLevel">Snapshot depth</label>
+    <select id="compressionLevel">
+      <option value="standard" selected>Standard</option>
+      <option value="minimal">Minimal (faster)</option>
+      <option value="verbose">Verbose (most context)</option>
+    </select>
+  </div>
+
+  <!-- Extract button -->
+  <div class="section">
+    <button id="extractBtn" class="btn-primary full-width" disabled>
+      Extract this conversation
+    </button>
+  </div>
+
+  <!-- Status area -->
+  <div id="status" class="status hidden"></div>
+
+  <!-- Result preview -->
+  <div id="resultArea" class="hidden">
+    <div class="section">
+      <label>Snapshot created</label>
+      <div id="snapshotPreview" class="preview-box"></div>
+    </div>
+    <button id="openDashboard" class="btn-secondary full-width">
+      Open Dashboard
+    </button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
