@@ -77,27 +77,27 @@ The snapshot outperforms even the full conversation because structured extractio
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Chrome Extension                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌──────────────────┐   │
-│  │ chatgpt.js  │  │  claude.js  │  │   background.js  │   │
-│  │ DOM scraper │  │ DOM scraper │  │ async extractor  │   │
-│  └──────┬──────┘  └──────┬──────┘  └────────┬─────────┘   │
+┌────────────────────────────────────────────────────────────┐
+│                    Chrome Extension                        │
+│  ┌─────────────┐  ┌─────────────┐  ┌──────────────────┐    │
+│  │ chatgpt.js  │  │  claude.js  │  │   background.js  │    │
+│  │ DOM scraper │  │ DOM scraper │  │ async extractor  │    │
+│  └──────┬──────┘  └──────┬──────┘  └────────┬─────────┘    |
 └─────────┼────────────────┼──────────────────┼──────────────┘
           │                │                  │
           └────────────────┴──────────────────┘
                            │ HTTP POST /extract
 ┌──────────────────────────▼──────────────────────────────────┐
-│                    FastAPI Backend                           │
+│                    FastAPI Backend                          │
 │                                                             │
-│  preprocessor.py → extractor.py → ollama/groq_client.py    │
+│  preprocessor.py → extractor.py → ollama/groq_client.py     │
 │       ↓                                                     │
-│  json_repair.py → Pydantic validation → SQLite             │
+│  json_repair.py → Pydantic validation → SQLite              │
 │                                                             │
-│  /snapshots  /merge  /restore  /diff  /eval                │
+│  /snapshots  /merge  /restore  /diff  /eval                 │
 └─────────────────────────────────────────────────────────────┘
           │                          │
-┌─────────▼──────────┐   ┌──────────▼──────────────────────┐
+┌─────────▼──────────┐   ┌────────── ▼ ─────────────────────┐
 │   SQLite Database  │   │      React Dashboard             │
 │                    │   │                                  │
 │  projects          │   │  Home → ProjectDetail            │
